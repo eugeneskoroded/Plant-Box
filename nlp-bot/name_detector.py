@@ -19,7 +19,7 @@ def create_bigrams(text):
     return bigrams
 
 
-def find_nearest(found_names, ratios, n=2):
+def find_nearest(found_names, ratios, n=1):
     zipped_list = list(zip(found_names, ratios))
     sorted_list = sorted(zipped_list, key=lambda x: x[1], reverse=True)
     return [item[0] for item in sorted_list[:n]]
