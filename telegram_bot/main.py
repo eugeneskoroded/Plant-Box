@@ -2,6 +2,8 @@ import telebot
 from telebot import types
 import config
 import pandas as pd
+import requests
+
 dataframe = pd.read_csv("./data/atlas_raw_rb.csv")
 cityframe = pd.read_csv("./data/day_light_data.csv")
 bot = telebot.TeleBot(config.token)
@@ -10,7 +12,6 @@ bot = telebot.TeleBot(config.token)
 markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 user = bot.get_me()
 btn1 = types.KeyboardButton("/start")
-
 
 
 is_on_chatbot = 0
@@ -122,7 +123,12 @@ def get_text_messages(message):
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             return_to_start = types.KeyboardButton("Вернуться в главное меню")
             markup.add(return_to_start)
-            bot.send_message(message.chat.id, text="Опять работа?", reply_markup=markup)
+            data = {'text': message.text}
+            response = requests.post(config.flask_url, data=data)
+            # Retrieve the response data
+            response_data = response.json()
+            # Print the response
+            bot.send_message(message.chat.id, text=response_data['response'], reply_markup=markup)
         # Город
         if is_on_city==1:
             entered_name = message.text.lower()
@@ -267,7 +273,7 @@ def get_text_messages(message):
                     else:
                         bot.send_message(message.chat.id, text=plant_data.redbook)
         except:
-            bot.send_message(message.chat.id, text="Повторите запрос")
+            bot.send_message(message.chat.id, text="Информация отсутствует. Измените запрос.")
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
