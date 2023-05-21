@@ -4,12 +4,10 @@ from model import GPT
 from name_detector import get_plants
 
 app = Flask(__name__)
-print(1)
-gptj = GPT("ggml-gpt4all-j-v1.3-groovy")
-print(1)
-tr = Translating()
-print(1)
 
+gptj = GPT("ggml-gpt4all-j-v1.3-groovy")
+
+tr = Translating()
 
 PROMPT = """### Instruction:
 You are helpful chatbot.
@@ -19,9 +17,9 @@ Based on this text answer questions:
 ### Prompt: 
  _QUESTION_
 """
-print(1)
+
 INVALID_RESPONSE = """Недостаточно информации, повторите запрос (возможно растение отсутствует в базе)"""
-print(1)
+
 
 @app.route('/get_answer', methods=['POST'])
 def process_text():
@@ -52,5 +50,4 @@ def process_text():
     
     
 if __name__ == '__main__':
-    print(2)
     app.run("0.0.0.0", port=3333)
