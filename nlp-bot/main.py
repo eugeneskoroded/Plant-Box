@@ -37,7 +37,9 @@ def process_text():
     
     #plants = ['аир обыкновенный']
     
-    categories= ['Ареал', 'Сырьё']
+    categories= ['Ареал', 'Сырьё', 'Экология', 'Ресурсы',
+                 'Применение в медицине', 'Химический состав',
+                 'Фармакологические свойства']
     
     plants_info_en = create_plants_information(plants, categories)
     question_en = tr.to_english(question)
