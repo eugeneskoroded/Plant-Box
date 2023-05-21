@@ -17,3 +17,9 @@ token="Ваш токен"
 ```
 python main.py
 ```
+## Парсеры
+1) Файл daylength_parser.ipynb - Парсер, позволяющий получить информацию о количестве световых дней и длительности светового дня в указанном населённом пункте.
+Источник[https://dateandtime.info/ru/citysunrisesunset.php?id=472045&month=5&year=202]
+2) Файл redbook_parser.ipynb - Парсер, позволяющий получить информацию о регионах, в которых заданное растение занесено в красную книгу.
+Источник[https://www.plantarium.ru/page/redbooks.htmlhttp://www.oopt.aari.ru/rbdata]
+3) Файл pdf_parsing.ipynb - Парсер, позволяющий выделить информацию из pdf документов и сформировать датасет.
